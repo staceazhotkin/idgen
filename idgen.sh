@@ -11,6 +11,9 @@ nhs()
 			[[ -z "$NHS_TO_VALIDATE" ]] && return 1;
 			echo $(curl -sS "${NHS_API_BASEURL}/ValidateNhsNumber/$(echo ${@} | tr -cd [0-9])")
 		else 
-			echo $(curl -sS "${NHS_API_BASEURL}/GetNhsNumbers/")
+			nhs_array=($(echo $(curl -sS "${NHS_API_BASEURL}/GetNhsNumbers/") | tr -d ' ' | jq -rc .[]))
+			echo ${nhs_array[@]}
 		fi
 }
+
+#nhs_array=($(nhs | tr -d ' ' | jq -rc .[]))
