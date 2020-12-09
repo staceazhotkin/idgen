@@ -15,5 +15,3 @@ nhs()
 			echo ${nhs_array[@]}
 		fi
 }
-
-#nhs_array=($(nhs | tr -d ' ' | jq -rc .[]))
